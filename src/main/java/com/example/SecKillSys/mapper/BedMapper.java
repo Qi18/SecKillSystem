@@ -1,7 +1,6 @@
-package com.example.demo.mapper;
+package com.example.SecKillSys.mapper;
 
-import com.example.demo.dao.Bed;
-import org.apache.ibatis.annotations.Mapper;
+import com.example.SecKillSys.dao.Bed;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

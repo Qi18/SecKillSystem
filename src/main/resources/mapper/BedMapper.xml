@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.mapper.BedMapper">
+<mapper namespace="com.example.SecKillSys.mapper.BedMapper">
     <select id="findAll" resultMap="BaseResultMap">
         SELECT * FROM bed;
     </select>
 
 
-    <resultMap id="BaseResultMap" type="com.example.demo.dao.Bed">
+    <resultMap id="BaseResultMap" type="com.example.SecKillSys.dao.Bed">
         <id column="Id" jdbcType="INTEGER" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="nums" jdbcType="INTEGER" property="amount" />
