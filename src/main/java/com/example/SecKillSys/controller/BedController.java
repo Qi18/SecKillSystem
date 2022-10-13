@@ -1,7 +1,7 @@
 package com.example.SecKillSys.controller;
 
 
-import com.example.SecKillSys.dao.Bed;
+import com.example.SecKillSys.po.Bed;
 import com.example.SecKillSys.mapper.BedMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

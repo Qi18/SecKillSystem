@@ -8,7 +8,7 @@
     </select>
 
 
-    <resultMap id="BaseResultMap" type="com.example.SecKillSys.dao.Bed">
+    <resultMap id="BaseResultMap" type="com.example.SecKillSys.po.Bed">
         <id column="Id" jdbcType="INTEGER" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="nums" jdbcType="INTEGER" property="amount" />

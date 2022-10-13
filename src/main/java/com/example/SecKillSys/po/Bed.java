@@ -1,4 +1,4 @@
-package com.example.SecKillSys.dao;
+package com.example.SecKillSys.po;
 
 
 import lombok.*;
@@ -13,8 +13,6 @@ public class Bed {
     private Integer id;
 
     private String name;
-
-    private Integer amount;
 
 }
 

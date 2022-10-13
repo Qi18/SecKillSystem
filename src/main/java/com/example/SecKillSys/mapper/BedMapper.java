@@ -1,6 +1,6 @@
 package com.example.SecKillSys.mapper;
 
-import com.example.SecKillSys.dao.Bed;
+import com.example.SecKillSys.po.Bed;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
