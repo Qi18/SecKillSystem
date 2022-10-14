@@ -11,8 +11,7 @@ import java.util.List;
 
 @Repository
 public interface UserMapper {
-
-
+     
      Student getStuByUsername(String username, String password);
 
      BuildingAdmin getBAByUsername(String username, String password);
