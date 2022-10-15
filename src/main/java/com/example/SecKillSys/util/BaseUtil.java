@@ -103,4 +103,18 @@ public class BaseUtil {
         return null;
     }
 
+    /**
+     * @param userVO: 传过来的user对象
+     * @return: java.lang.Object
+     * @author: rich
+     * @date: 2022/10/15 22:05
+     * @description: 将User类型转换为三种类型
+     */
+    public static Object changeToPo(UserVO userVO) throws Exception {
+        if (userVO.getUserType() == UserType.Student) return copyProperties(userVO, Student.class);
+        else if (userVO.getUserType() == UserType.Student_Admin) return copyProperties(userVO, StuAdmin.class);
+        else if (userVO.getUserType() == UserType.Building_Admin) return copyProperties(userVO, BuildingAdmin.class);
+        return null;
+    }
+
 }

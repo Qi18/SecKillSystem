@@ -14,18 +14,13 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    @ResponseBody
     public UserVO login(@RequestParam("username") String username, @RequestParam("password") String password) throws Exception {
-        UserVO userVO = userService.login(username, password);
-        //TODO
-        if (userVO == null) return null;
-        return userVO;
+        return userService.login(username, password);
     }
 
-    @GetMapping("/wrong")
-    public int error(){
-        int i = 9/0;
-        return i;
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
+    public UserVO update(@RequestBody UserVO userVO) throws Exception {
+        return userService.update(userVO);
     }
 
 

@@ -15,4 +15,14 @@ public interface UserService {
      */
     UserVO login(String username, String password) throws Exception;
 
+    /**
+     * @param userVO: 用户信息
+     * @return: com.example.SecKillSys.vo.UserVO
+     * @author: rich
+     * @date: 2022/10/15 21:50
+     * @description: 修改用户信息
+     */
+    UserVO update(UserVO userVO) throws Exception;
+
+
 }

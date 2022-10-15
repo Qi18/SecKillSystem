@@ -1,6 +1,7 @@
 package com.example.SecKillSys.servicelmpl;
 
 import com.example.SecKillSys.enums.ReturnCode;
+import com.example.SecKillSys.enums.UserType;
 import com.example.SecKillSys.exception.BusinessException;
 import com.example.SecKillSys.repository.BuildingAdminRepository;
 import com.example.SecKillSys.repository.StuAdminRepository;
@@ -13,6 +14,8 @@ import com.example.SecKillSys.vo.UserVO;
 import com.example.SecKillSys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,5 +38,22 @@ public class UserServiceImpl implements UserService {
         StuAdmin stuAdmin = stuAdminRepository.findStuAdminByUsernameAndPassword(username, password);
         if (stuAdmin != null) return BaseUtil.changeToUser(stuAdmin);
         throw new BusinessException(ReturnCode.USERNAME_OR_PASSWORD_ERROR);
+    }
+
+    @Override
+    public UserVO update(UserVO userVO) throws Exception {
+        if (userVO.getUserType() == UserType.Student) {
+            studentRepository.save((Student) Objects.requireNonNull(BaseUtil.changeToPo(userVO)));
+            return BaseUtil.changeToUser(studentRepository.findById(userVO.getId()).get());
+        }
+        else if (userVO.getUserType() == UserType.Student_Admin) {
+            stuAdminRepository.save((StuAdmin) Objects.requireNonNull(BaseUtil.changeToPo(userVO)));
+            return BaseUtil.changeToUser(stuAdminRepository.findById(userVO.getId()).get());
+        }
+        else if (userVO.getUserType() == UserType.Building_Admin) {
+            buildingAdminRepository.save((BuildingAdmin) Objects.requireNonNull(BaseUtil.changeToPo(userVO)));
+            return BaseUtil.changeToUser(buildingAdminRepository.findById(userVO.getId()).get());
+        }
+        throw new BusinessException(ReturnCode.RC500);
     }
 }

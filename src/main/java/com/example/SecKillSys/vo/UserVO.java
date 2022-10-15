@@ -12,7 +12,7 @@ public class UserVO {
 
     private Integer id;
 
-    private String name;
+    private String username;
 
     private String password;
 
@@ -27,6 +27,8 @@ public class UserVO {
     private String student_number;
 
     private UserType userType;
+
+    private String name;
 
 }
 
