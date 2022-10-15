@@ -1,5 +1,7 @@
 package com.example.SecKillSys.servicelmpl;
 
+import com.example.SecKillSys.enums.ReturnCode;
+import com.example.SecKillSys.exception.BusinessException;
 import com.example.SecKillSys.repository.BuildingAdminRepository;
 import com.example.SecKillSys.repository.StuAdminRepository;
 import com.example.SecKillSys.repository.StudentRepository;
@@ -24,14 +26,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     StuAdminRepository stuAdminRepository;
 
-    /*
-     * @param username:
-     * @param password: 
-     * @return: com.example.SecKillSys.vo.UserVO
-     * @author: rich
-     * @date: 2022/10/15 12:24
-     * @description:
-     */
     @Override
     public UserVO login(String username, String password) throws Exception {
         Student student = studentRepository.findStudentByUsernameAndPassword(username, password);
@@ -40,9 +34,6 @@ public class UserServiceImpl implements UserService {
         if (buildingAdmin != null) return BaseUtil.changeToUser(buildingAdmin);
         StuAdmin stuAdmin = stuAdminRepository.findStuAdminByUsernameAndPassword(username, password);
         if (stuAdmin != null) return BaseUtil.changeToUser(stuAdmin);
-
-        //TODO
-        //登录未成功，没有此账户，
-        return null;
+        throw new BusinessException(ReturnCode.USERNAME_OR_PASSWORD_ERROR);
     }
 }
