@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @SpringBootApplication
-@EnableJpaRepositories
+//@EnableJpaRepositories
 public class SecKillSysApplication {
 
     public static void main(String[] args) {

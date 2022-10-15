@@ -24,6 +24,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     StuAdminRepository stuAdminRepository;
 
+    /*
+     * @param username:
+     * @param password: 
+     * @return: com.example.SecKillSys.vo.UserVO
+     * @author: rich
+     * @date: 2022/10/15 12:24
+     * @description:
+     */
     @Override
     public UserVO login(String username, String password) throws Exception {
         Student student = studentRepository.findStudentByUsernameAndPassword(username, password);

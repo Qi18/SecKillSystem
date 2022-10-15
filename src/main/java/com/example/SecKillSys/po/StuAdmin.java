@@ -10,8 +10,7 @@ import javax.persistence.*;
  * @description:
  */
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString

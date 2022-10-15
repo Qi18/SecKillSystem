@@ -4,8 +4,7 @@ import com.example.SecKillSys.enums.Gender;
 import com.example.SecKillSys.enums.UserType;
 import lombok.*;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString

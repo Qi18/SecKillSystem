@@ -22,6 +22,11 @@ public class UserController {
         return userVO;
     }
 
+    @GetMapping("/wrong")
+    public int error(){
+        int i = 9/0;
+        return i;
+    }
 
 
 

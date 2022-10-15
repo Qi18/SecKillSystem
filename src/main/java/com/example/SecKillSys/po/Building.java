@@ -3,8 +3,7 @@ package com.example.SecKillSys.po;
 
 import lombok.*;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
