@@ -1,5 +1,6 @@
 package com.example.SecKillSys.vo;
 
+import com.example.SecKillSys.enums.Gender;
 import com.example.SecKillSys.enums.UserType;
 import lombok.*;
 
@@ -18,9 +19,9 @@ public class UserVO {
 
     private String tag;
 
-    private Boolean gender;
+    private Gender gender;
 
-    private String ID_number;
+    private String id_number;
 
     private String phone;
 

@@ -45,10 +45,12 @@ public class BaseUtil {
                     try {
                         // 获取源对象的属性名，将属性名首字母大写，拼接如：getUsername、getId的字符串
                         String sName = sField.getName();
+//                        System.out.println(sName);
                         char[] sChars = sName.toCharArray();
                         sChars[0] -= 32;
                         String sMethodName = "get" + String.valueOf(sChars);
                         // 获得属性的get方法
+//                        System.out.println(sMethodName);
                         Method sMethod = sClass.getMethod(sMethodName);
                         // 调用get方法
                         Object sFieldValue = sMethod.invoke(source);
@@ -85,17 +87,17 @@ public class BaseUtil {
     public static UserVO changeToUser(Object source) throws Exception {
         if (source instanceof Student) {
             UserVO userVO = copyProperties(source, UserVO.class);
-            userVO.setUserType(UserType.valueOf("1"));
+            userVO.setUserType(UserType.valueOf("Student"));
             return userVO;
         }
         else if (source instanceof StuAdmin) {
             UserVO userVO = copyProperties(source, UserVO.class);
-            userVO.setUserType(UserType.valueOf("2"));
+            userVO.setUserType(UserType.valueOf("Student_Admin"));
             return userVO;
         }
         else if (source instanceof BuildingAdmin) {
             UserVO userVO = copyProperties(source, UserVO.class);
-            userVO.setUserType(UserType.valueOf("3"));
+            userVO.setUserType(UserType.valueOf("Building_Admin"));
             return userVO;
         }
         return null;

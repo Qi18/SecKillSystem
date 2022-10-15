@@ -1,20 +1,55 @@
 package com.example.SecKillSys.po;
 
 
+import com.example.SecKillSys.enums.Gender;
+import com.example.SecKillSys.enums.UserType;
 import lombok.*;
+
+import javax.persistence.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Entity
+@Table(name = "Students")
 public class Student {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
-    private String name;
+    @Column(name = "username")
+    private String username;
 
-    private Integer amount;
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "tag")
+    private String tag;
+
+    @Column(name = "bedId")
+    private Integer bedId;
+
+    @Column(name = "gender")
+    private Gender gender;
+
+    @Column(name = "gid")
+    private Integer group_id;
+
+    @Column(name = "ID_number")
+    private String id_number;
+
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "student_number")
+    private String student_number;
+
+    @Column(name = "name")
+    private String name;
 
 }
 

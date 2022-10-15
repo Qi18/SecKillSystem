@@ -13,9 +13,9 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
     @ResponseBody
-    public UserVO login(@RequestParam("username") String username, @RequestParam("password") String password)  {
+    public UserVO login(@RequestParam("username") String username, @RequestParam("password") String password) throws Exception {
         UserVO userVO = userService.login(username, password);
         //TODO
         if (userVO == null) return null;
