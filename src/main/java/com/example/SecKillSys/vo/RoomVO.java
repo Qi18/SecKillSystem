@@ -22,7 +22,5 @@ public class RoomVO {
 
     private Integer remainNums;
 
-    private Integer lid;
-
     private List<BedVO> beds;
 }

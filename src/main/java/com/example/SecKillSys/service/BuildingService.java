@@ -14,5 +14,5 @@ public interface BuildingService {
 
     List<BuildingVO> retrieveAllBuildings() throws Exception;
 
-    BuildingVO retrieveBuildingDetails(Integer building_id);
+    BuildingVO retrieveBuildingDetails(Integer building_id) throws Exception;
 }
