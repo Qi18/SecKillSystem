@@ -29,13 +29,13 @@ public class Student {
     @Column(name = "tag")
     private String tag;
 
-    @Column(name = "bedId")
-    private Integer bedId;
+    @Column(name = "bed_id")
+    private Integer bed_id;
 
     @Column(name = "gender")
     private Gender gender;
 
-    @Column(name = "gid")
+    @Column(name = "group_id")
     private Integer group_id;
 
     @Column(name = "ID_number")

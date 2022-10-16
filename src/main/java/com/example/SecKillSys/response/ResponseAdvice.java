@@ -1,5 +1,6 @@
 package com.example.SecKillSys.response;
 
+import com.example.SecKillSys.enums.ReturnCode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +37,12 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, org.springframework.http.server.ServerHttpRequest request, org.springframework.http.server.ServerHttpResponse response) {
         if(body instanceof String){
-            return objectMapper.writeValueAsString(ResultData.success(body));
+            return objectMapper.writeValueAsString(ResultData.fail(ReturnCode.RC200.getCode(), (String) body));
         }
         if(body instanceof ResultData){
             return body;
         }
+        System.out.println(body);
         return ResultData.success(body);
     }
 }

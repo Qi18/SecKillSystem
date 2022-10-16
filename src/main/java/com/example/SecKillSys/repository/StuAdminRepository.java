@@ -12,4 +12,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface StuAdminRepository extends JpaRepository<StuAdmin, Integer>  {
 
     StuAdmin findStuAdminByUsernameAndPassword(String username, String password);
+
+    StuAdmin findStuAdminByUsername(String username);
 }

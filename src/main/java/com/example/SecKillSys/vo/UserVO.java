@@ -4,11 +4,15 @@ import com.example.SecKillSys.enums.Gender;
 import com.example.SecKillSys.enums.UserType;
 import lombok.*;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class UserVO {
+
+    public static final String USER_SESSION_KEY = "user_session_key";
 
     private Integer id;
 
@@ -29,6 +33,7 @@ public class UserVO {
     private UserType userType;
 
     private String name;
+
 
 }
 

@@ -15,7 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "BuildingAdmin")
+@Table(name = "Building_Admins")
 public class BuildingAdmin {
 
     @Id

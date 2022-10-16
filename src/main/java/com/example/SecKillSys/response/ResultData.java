@@ -23,9 +23,9 @@ public class ResultData<T> {
     }
     public static <T> ResultData<T> success(T data) {
         ResultData<T> resultData = new ResultData<>();
-        resultData.setStatus(ReturnCode.RC100.getCode());
-        System.out.println(resultData.message);
-        resultData.setMessage(ReturnCode.RC100.getMessage());
+        resultData.setStatus(ReturnCode.RC200.getCode());
+        //System.out.println(resultData.message);
+        resultData.setMessage(ReturnCode.RC200.getMessage());
         resultData.setData(data);
         return resultData;
     }

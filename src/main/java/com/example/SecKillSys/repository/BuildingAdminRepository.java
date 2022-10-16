@@ -12,4 +12,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface BuildingAdminRepository extends JpaRepository<BuildingAdmin, Integer> {
 
     BuildingAdmin findBuildingAdminByUsernameAndPassword(String username, String password);
+
+    BuildingAdmin findBuildingAdminByUsername(String username);
 }

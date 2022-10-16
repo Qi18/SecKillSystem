@@ -15,7 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "StudentAdmin")
+@Table(name = "Student_Admins")
 public class StuAdmin {
 
     @Id
@@ -28,5 +28,7 @@ public class StuAdmin {
 
     @Column(name = "password")
     private String password;
+
+
 
 }

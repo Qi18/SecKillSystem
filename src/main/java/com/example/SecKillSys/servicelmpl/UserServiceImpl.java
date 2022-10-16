@@ -30,14 +30,14 @@ public class UserServiceImpl implements UserService {
     StuAdminRepository stuAdminRepository;
 
     @Override
-    public UserVO login(String username, String password) throws Exception {
-        Student student = studentRepository.findStudentByUsernameAndPassword(username, password);
+    public UserVO findByUsername(String username) throws Exception {
+        Student student = studentRepository.findStudentByUsername(username);
         if (student != null) return BaseUtil.changeToUser(student);
-        BuildingAdmin buildingAdmin = buildingAdminRepository.findBuildingAdminByUsernameAndPassword(username, password);
+        BuildingAdmin buildingAdmin = buildingAdminRepository.findBuildingAdminByUsername(username);
         if (buildingAdmin != null) return BaseUtil.changeToUser(buildingAdmin);
-        StuAdmin stuAdmin = stuAdminRepository.findStuAdminByUsernameAndPassword(username, password);
+        StuAdmin stuAdmin = stuAdminRepository.findStuAdminByUsername(username);
         if (stuAdmin != null) return BaseUtil.changeToUser(stuAdmin);
-        throw new BusinessException(ReturnCode.USERNAME_OR_PASSWORD_ERROR);
+        throw new BusinessException(ReturnCode.NO_SUCH_USER);
     }
 
     @Override
