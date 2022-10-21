@@ -1,9 +1,6 @@
 package com.example.SecKillSys.util;
 
 import com.example.SecKillSys.enums.UserType;
-import com.example.SecKillSys.po.BuildingAdmin;
-import com.example.SecKillSys.po.StuAdmin;
-import com.example.SecKillSys.po.Student;
 import com.example.SecKillSys.vo.UserVO;
 
 import java.lang.reflect.Field;
@@ -77,44 +74,44 @@ public class BaseUtil {
         return target;
     }
 
-    /**
-     * @param source: 需要被转成User的对象
-     * @return: com.example.SecKillSys.vo.UserVO
-     * @author: rich
-     * @date: 2022/10/13 21:11
-     * @description: 将三种类型转换为user类型
-     */
-    public static UserVO changeToUser(Object source) throws Exception {
-        if (source instanceof Student) {
-            UserVO userVO = copyProperties(source, UserVO.class);
-            userVO.setUserType(UserType.valueOf("Student"));
-            return userVO;
-        }
-        else if (source instanceof StuAdmin) {
-            UserVO userVO = copyProperties(source, UserVO.class);
-            userVO.setUserType(UserType.valueOf("Student_Admin"));
-            return userVO;
-        }
-        else if (source instanceof BuildingAdmin) {
-            UserVO userVO = copyProperties(source, UserVO.class);
-            userVO.setUserType(UserType.valueOf("Building_Admin"));
-            return userVO;
-        }
-        return null;
-    }
-
-    /**
-     * @param userVO: 传过来的user对象
-     * @return: java.lang.Object
-     * @author: rich
-     * @date: 2022/10/15 22:05
-     * @description: 将User类型转换为三种类型
-     */
-    public static Object changeToPo(UserVO userVO) throws Exception {
-        if (userVO.getUserType() == UserType.Student) return copyProperties(userVO, Student.class);
-        else if (userVO.getUserType() == UserType.Student_Admin) return copyProperties(userVO, StuAdmin.class);
-        else if (userVO.getUserType() == UserType.Building_Admin) return copyProperties(userVO, BuildingAdmin.class);
-        return null;
-    }
+//    /**
+//     * @param source: 需要被转成User的对象
+//     * @return: com.example.SecKillSys.vo.UserVO
+//     * @author: rich
+//     * @date: 2022/10/13 21:11
+//     * @description: 将三种类型转换为user类型
+//     */
+//    public static UserVO changeToUser(Object source) throws Exception {
+//        if (source instanceof Student) {
+//            UserVO userVO = copyProperties(source, UserVO.class);
+//            userVO.setUserType(UserType.valueOf("Student"));
+//            return userVO;
+//        }
+//        else if (source instanceof StuAdmin) {
+//            UserVO userVO = copyProperties(source, UserVO.class);
+//            userVO.setUserType(UserType.valueOf("Student_Admin"));
+//            return userVO;
+//        }
+//        else if (source instanceof BuildingAdmin) {
+//            UserVO userVO = copyProperties(source, UserVO.class);
+//            userVO.setUserType(UserType.valueOf("Building_Admin"));
+//            return userVO;
+//        }
+//        return null;
+//    }
+//
+//    /**
+//     * @param userVO: 传过来的user对象
+//     * @return: java.lang.Object
+//     * @author: rich
+//     * @date: 2022/10/15 22:05
+//     * @description: 将User类型转换为三种类型
+//     */
+//    public static Object changeToPo(UserVO userVO) throws Exception {
+//        if (userVO.getUserType() == UserType.Student) return copyProperties(userVO, Student.class);
+//        else if (userVO.getUserType() == UserType.Student_Admin) return copyProperties(userVO, StuAdmin.class);
+//        else if (userVO.getUserType() == UserType.Building_Admin) return copyProperties(userVO, BuildingAdmin.class);
+//        return null;
+//    }
 
 }

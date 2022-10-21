@@ -3,10 +3,8 @@ package com.example.SecKillSys.servicelmpl;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.example.SecKillSys.enums.ReturnCode;
 import com.example.SecKillSys.exception.BusinessException;
-import com.example.SecKillSys.repository.BuildingAdminRepository;
 import com.example.SecKillSys.repository.BuildingRepository;
-import com.example.SecKillSys.repository.StuAdminRepository;
-import com.example.SecKillSys.repository.StudentRepository;
+import com.example.SecKillSys.repository.UserRepository;
 import com.example.SecKillSys.service.AuthenticationService;
 import com.example.SecKillSys.service.UserService;
 import com.example.SecKillSys.vo.AuthenticationRequest;
@@ -23,13 +21,10 @@ import org.springframework.stereotype.Service;
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Autowired
-    StudentRepository studentRepository;
+    UserRepository userRepository;
 
     @Autowired
-    StuAdminRepository adminRepository;
-
-    @Autowired
-    BuildingAdminRepository buildingAdminRepository;
+    BuildingRepository buildingRepository;
 
     @Autowired
     UserService userService;
