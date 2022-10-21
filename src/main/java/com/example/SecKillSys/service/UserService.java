@@ -3,7 +3,14 @@ package com.example.SecKillSys.service;
 
 import com.example.SecKillSys.vo.UserVO;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
+
 public interface UserService {
+
+    List<UserVO> findAll() throws Exception;
+
+    UserVO findById(Integer id) throws Exception;
 
     /**
      * @param username: 用户名
@@ -21,6 +28,11 @@ public interface UserService {
      * @date: 2022/10/15 21:50
      * @description: 修改用户信息
      */
-    UserVO update(UserVO userVO) throws Exception;
+    UserVO updateUser(UserVO userVO) throws Exception;
+
+
+    void addUser(UserVO userVO) throws Exception;
+
+    void deleteUserById(Integer id) throws Exception;
 
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -43,8 +44,27 @@ public class UserController {
 
     @RequestMapping(value = "/update",method = RequestMethod.POST)
     public UserVO update(@RequestBody UserVO userVO) throws Exception {
-        return userService.update(userVO);
+        return userService.updateUser(userVO);
     }
+
+    @RequestMapping(value = "findAll",method = RequestMethod.GET)
+    public List<UserVO> findAll() throws Exception {
+        return userService.findAll();
+    }
+
+    @RequestMapping(value = "delete",method = RequestMethod.DELETE)
+    public String delete(@RequestParam Integer id) throws Exception {
+        userService.deleteUserById(id);
+        return "删除成功";
+    }
+
+    @RequestMapping(value = "add",method = RequestMethod.PUT)
+    public String add(@RequestBody UserVO userVO) throws Exception {
+        userService.addUser(userVO);
+        return "添加成功";
+    }
+
+
 
 
 

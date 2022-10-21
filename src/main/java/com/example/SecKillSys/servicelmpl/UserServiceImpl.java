@@ -12,7 +12,9 @@ import com.example.SecKillSys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,8 +22,27 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    BuildingRepository buildingRepository;
+
+    @Override
+    public List<UserVO> findAll() throws Exception {
+        List<User> users = userRepository.findAll();
+        List<UserVO> userVOS = users.stream().map(r -> {
+            try {
+                return BaseUtil.copyProperties(r, UserVO.class);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }).collect(Collectors.toList());
+        return userVOS;
+    }
+
+    @Override
+    public UserVO findById(Integer id) throws Exception {
+        User user = userRepository.findUserById(id);
+        if (user != null) return BaseUtil.copyProperties(user, UserVO.class);
+        throw new BusinessException(ReturnCode.NO_SUCH_USER);
+    }
 
     @Override
     public UserVO findByUsername(String username) throws Exception {
@@ -31,7 +52,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserVO update(UserVO userVO) throws Exception {
+    public UserVO updateUser(UserVO userVO) throws Exception {
         if (userVO.getId() != null) {
             User user = userRepository.findUserById(userVO.getId());
             BaseUtil.copyProperties(userVO, user);
@@ -40,4 +61,18 @@ public class UserServiceImpl implements UserService {
         System.out.println(userVO.getId());
         return BaseUtil.copyProperties(userRepository.findUserById(userVO.getId()),UserVO.class);
     }
+
+    @Override
+    public void addUser(UserVO userVO) throws Exception {
+        User user = BaseUtil.copyProperties(userVO, User.class);
+        user.setId(null);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void deleteUserById(Integer id) throws Exception {
+        userRepository.deleteById(id);
+    }
+
+
 }
