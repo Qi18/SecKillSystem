@@ -23,6 +23,11 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      @Query(value = "select * from Users", nativeQuery = true)
      List<User> findAll();
 
+     @Query(value = "select * from Users u where u.student_number in (?1)", nativeQuery = true)
+     List<User> findAllBySnum(List<String> snums);
+
+     User findUserBySnum(String snum);
+
      @Modifying
      @Transactional
      @Query(value = "delete from Users u where u.id = :id", nativeQuery = true)

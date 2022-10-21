@@ -37,7 +37,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throw new BusinessException(ReturnCode.BLANK_USERNAME);
         }
         //不为空则根据用户名到数据库中查找用户信息
-        UserVO userVO = userService.findByUsername(username);
+        UserVO userVO = userService.retrieveByUsername(username);
 
         //存在则根据用户输入的密码和数据库取出的用户密码进行比对
         if (!userVO.getPassword().equals(authenticationRequest.getPassword())){

@@ -4,10 +4,7 @@ import com.example.SecKillSys.po.Building;
 import com.example.SecKillSys.po.Group;
 import com.example.SecKillSys.po.Order;
 import com.example.SecKillSys.po.User;
-import com.example.SecKillSys.vo.BuildingVO;
-import com.example.SecKillSys.vo.GroupVO;
-import com.example.SecKillSys.vo.OrderVO;
-import com.example.SecKillSys.vo.UserVO;
+import com.example.SecKillSys.vo.*;
 
 import java.util.List;
 
@@ -25,7 +22,7 @@ public interface OrderService {
      * @date: 2022/10/21 19:53
      * @description: 添加group表，groupStu表
      */
-    Group createGroup(List<UserVO> userVOS) throws Exception;
+    GroupVO createGroup(List<GroupStuVO> groupStuVOs) throws Exception;
 
     /*
      * @param group:
@@ -44,6 +41,6 @@ public interface OrderService {
      * @date: 2022/10/21 20:03
      * @description: 提交订单，返回订单（状态），成功后应该修改bed，room
      */
-    Order upOrder(OrderVO orderVO);
+    OrderVO upOrder(OrderVO orderVO);
 
 }

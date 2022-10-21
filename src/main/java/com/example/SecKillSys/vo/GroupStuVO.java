@@ -1,6 +1,5 @@
 package com.example.SecKillSys.vo;
 
-import com.example.SecKillSys.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,7 @@ import java.util.List;
 
 /**
  * @author: rich
- * @date: 2022/10/21 20:02
+ * @date: 2022/10/21 21:48
  * @description:
  */
 
@@ -18,13 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class GroupVO {
-
-    private Integer id;
-
-    private Gender gender;
-
-    private String name;
-
-    private List<UserVO> userVOS;
+public class GroupStuVO {
+    String snum;
+    String name;
 }

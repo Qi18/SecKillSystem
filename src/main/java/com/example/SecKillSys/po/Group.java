@@ -30,6 +30,6 @@ public class Group {
     private Gender gender;
 
     @Column(name = "name")
-    private Integer name;
+    private String name;
 
 }

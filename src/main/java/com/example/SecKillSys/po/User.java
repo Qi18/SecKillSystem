@@ -33,13 +33,13 @@ public class User {
     private Gender gender;
 
     @Column(name = "ID_number")
-    private String iNum;
+    private String inum;
 
     @Column(name = "phone")
     private String phone;
 
     @Column(name = "student_number")
-    private String sNum;
+    private String snum;
 
     @Column(name = "name")
     private String name;
