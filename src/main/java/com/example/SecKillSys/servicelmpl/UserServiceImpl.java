@@ -32,7 +32,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVO update(UserVO userVO) throws Exception {
-        if (userVO.getId() != null) userRepository.save((User) Objects.requireNonNull(BaseUtil.copyProperties(userVO, User.class)));
+        if (userVO.getId() != null) {
+            User user = userRepository.findUserById(userVO.getId());
+            BaseUtil.copyProperties(userVO, user);
+            userRepository.save(user);
+        }
         System.out.println(userVO.getId());
         return BaseUtil.copyProperties(userRepository.findUserById(userVO.getId()),UserVO.class);
     }

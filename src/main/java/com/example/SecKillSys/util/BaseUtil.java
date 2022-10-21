@@ -74,44 +74,52 @@ public class BaseUtil {
         return target;
     }
 
-//    /**
-//     * @param source: 需要被转成User的对象
-//     * @return: com.example.SecKillSys.vo.UserVO
-//     * @author: rich
-//     * @date: 2022/10/13 21:11
-//     * @description: 将三种类型转换为user类型
-//     */
-//    public static UserVO changeToUser(Object source) throws Exception {
-//        if (source instanceof Student) {
-//            UserVO userVO = copyProperties(source, UserVO.class);
-//            userVO.setUserType(UserType.valueOf("Student"));
-//            return userVO;
-//        }
-//        else if (source instanceof StuAdmin) {
-//            UserVO userVO = copyProperties(source, UserVO.class);
-//            userVO.setUserType(UserType.valueOf("Student_Admin"));
-//            return userVO;
-//        }
-//        else if (source instanceof BuildingAdmin) {
-//            UserVO userVO = copyProperties(source, UserVO.class);
-//            userVO.setUserType(UserType.valueOf("Building_Admin"));
-//            return userVO;
-//        }
-//        return null;
-//    }
-//
-//    /**
-//     * @param userVO: 传过来的user对象
-//     * @return: java.lang.Object
-//     * @author: rich
-//     * @date: 2022/10/15 22:05
-//     * @description: 将User类型转换为三种类型
-//     */
-//    public static Object changeToPo(UserVO userVO) throws Exception {
-//        if (userVO.getUserType() == UserType.Student) return copyProperties(userVO, Student.class);
-//        else if (userVO.getUserType() == UserType.Student_Admin) return copyProperties(userVO, StuAdmin.class);
-//        else if (userVO.getUserType() == UserType.Building_Admin) return copyProperties(userVO, BuildingAdmin.class);
-//        return null;
-//    }
+    public static <T, E> void copyProperties(T source, E target) throws Exception {
+        Class<?> sClass = source.getClass();
+        Class<?> tClass = target.getClass();
+        Field[] sFields = sClass.getDeclaredFields();
+        Field[] tFields = tClass.getDeclaredFields();
+        for (Field sField : sFields) {
+            for (Field tField : tFields) {
+                // 名字和属性都一样的情况下赋值
+                if (sField.getName().equals(tField.getName()) && sField.getGenericType().equals(tField.getGenericType())) {
+                    try {
+                        // 获取源对象的属性名，将属性名首字母大写，拼接如：getUsername、getId的字符串
+                        String sName = sField.getName();
+//                        System.out.println(sName);
+                        char[] sChars = sName.toCharArray();
+                        sChars[0] -= 32;
+                        String sMethodName = "get" + String.valueOf(sChars);
+                        // 获得属性的get方法
+//                        System.out.println(sMethodName);
+                        Method sMethod = sClass.getMethod(sMethodName);
+                        // 调用get方法
+                        Object sFieldValue = sMethod.invoke(source);
+
+                        // 获取目标对象的属性名，将属性名首字母大写，拼接如：setUsername、setId的字符串
+                        String tName = tField.getName();
+                        char[] tChars = tName.toCharArray();
+                        tChars[0] -= 32;
+                        String tMethodName_g = "get" + String.valueOf(tChars);
+                        String tMethodName_s = "set" + String.valueOf(tChars);
+                        // 获得属性的set方法
+                        Method tMethod_s = tClass.getMethod(tMethodName_s, tField.getType());
+                        // 调用方法，并将源对象get方法返回值作为参数传入
+                        if (sFieldValue != null) {
+                            if (sFieldValue instanceof String) {
+                                if (!((String)sFieldValue).equals("")) tMethod_s.invoke(target, sFieldValue);
+                            }
+                            else tMethod_s.invoke(target, sFieldValue);
+                        }
+                        break;
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                        throw new Exception("转换失败");
+                    }
+                }
+            }
+        }
+    }
 
 }
