@@ -1,32 +1,30 @@
 package com.example.SecKillSys.vo;
 
-import com.example.SecKillSys.po.Bed;
+import com.example.SecKillSys.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Column;
 import java.util.List;
 
 /**
  * @author: rich
- * @date: 2022/10/16 15:05
+ * @date: 2022/10/21 20:02
  * @description:
  */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class RoomVO {
+public class GroupVO {
 
     private Integer id;
 
-    private String name;
+    private Gender gender;
 
-    private Integer nums;
+    private Integer name;
 
-    private Integer remainNums;
-
-    private List<BedVO> beds;
+    private List<UserVO> userVOS;
 }

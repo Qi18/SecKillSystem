@@ -29,23 +29,17 @@ public class User {
     @Column(name = "tag")
     private String tag;
 
-    @Column(name = "bed_id")
-    private Integer bed_id;
-
     @Column(name = "gender")
     private Gender gender;
 
-    @Column(name = "group_id")
-    private Integer group_id;
-
     @Column(name = "ID_number")
-    private String id_number;
+    private String iNum;
 
     @Column(name = "phone")
     private String phone;
 
     @Column(name = "student_number")
-    private String student_number;
+    private String sNum;
 
     @Column(name = "name")
     private String name;

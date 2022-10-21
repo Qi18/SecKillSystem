@@ -1,10 +1,8 @@
-package com.example.SecKillSys.servicelmpl;
+package com.example.SecKillSys.service.lmpl;
 
 import com.example.SecKillSys.enums.ReturnCode;
-import com.example.SecKillSys.enums.UserType;
 import com.example.SecKillSys.exception.BusinessException;
 import com.example.SecKillSys.po.User;
-import com.example.SecKillSys.repository.BuildingRepository;
 import com.example.SecKillSys.repository.UserRepository;
 import com.example.SecKillSys.util.BaseUtil;
 import com.example.SecKillSys.vo.UserVO;
@@ -13,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<UserVO> findAll() throws Exception {
+    public List<UserVO> retrieveAllUsers() throws Exception {
         List<User> users = userRepository.findAll();
         List<UserVO> userVOS = users.stream().map(r -> {
             try {
@@ -38,14 +35,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserVO findById(Integer id) throws Exception {
+    public UserVO retrieveUserDetails(Integer id) throws Exception {
         User user = userRepository.findUserById(id);
         if (user != null) return BaseUtil.copyProperties(user, UserVO.class);
         throw new BusinessException(ReturnCode.NO_SUCH_USER);
     }
 
     @Override
-    public UserVO findByUsername(String username) throws Exception {
+    public UserVO retrieveByUsername(String username) throws Exception {
         User user = userRepository.findUserByUsername(username);
         if (user != null) return BaseUtil.copyProperties(user, UserVO.class);
         throw new BusinessException(ReturnCode.NO_SUCH_USER);

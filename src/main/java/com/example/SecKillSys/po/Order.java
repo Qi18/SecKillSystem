@@ -18,8 +18,17 @@ public class Order {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "")
-    private String name;
+    @Column(name = "group_id")
+    private Integer gid;
+
+    @Column(name = "building_id")
+    private Integer bid;
+
+    @Column(name = "status")
+    private Integer status;
+
+    @Column(name = "room_id")
+    private Integer rid;
 
 }
 

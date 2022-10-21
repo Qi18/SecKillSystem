@@ -1,4 +1,4 @@
-package com.example.SecKillSys.servicelmpl;
+package com.example.SecKillSys.service.lmpl;
 
 import com.example.SecKillSys.service.RoomService;
 

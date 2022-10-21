@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface UserService {
 
-    List<UserVO> findAll() throws Exception;
+    List<UserVO> retrieveAllUsers() throws Exception;
 
-    UserVO findById(Integer id) throws Exception;
+    UserVO retrieveUserDetails(Integer id) throws Exception;
 
     /**
      * @param username: 用户名
@@ -19,7 +19,7 @@ public interface UserService {
      * @date: 2022/10/13 21:22
      * @description: 登录操作
      */
-    UserVO findByUsername(String username) throws Exception;
+    UserVO retrieveByUsername(String username) throws Exception;
 
     /**
      * @param userVO: 用户信息

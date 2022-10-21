@@ -1,6 +1,9 @@
 package com.example.SecKillSys.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Column;
 
@@ -10,6 +13,9 @@ import javax.persistence.Column;
  * @description:
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class BedVO {
 
     private Integer id;

@@ -49,7 +49,7 @@ public class UserController {
 
     @RequestMapping(value = "findAll",method = RequestMethod.GET)
     public List<UserVO> findAll() throws Exception {
-        return userService.findAll();
+        return userService.retrieveAllUsers();
     }
 
     @RequestMapping(value = "delete",method = RequestMethod.DELETE)

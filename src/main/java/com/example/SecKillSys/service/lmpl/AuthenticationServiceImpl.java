@@ -1,4 +1,4 @@
-package com.example.SecKillSys.servicelmpl;
+package com.example.SecKillSys.service.lmpl;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.example.SecKillSys.enums.ReturnCode;
