@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVO findByUsername(String username) throws Exception {
-        User user = userRepository.findStudentByUsername(username);
+        User user = userRepository.findUserByUsername(username);
         if (user != null) return BaseUtil.copyProperties(user, UserVO.class);
         throw new BusinessException(ReturnCode.NO_SUCH_USER);
     }
@@ -33,6 +33,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserVO update(UserVO userVO) throws Exception {
         if (userVO.getId() != null) userRepository.save((User) Objects.requireNonNull(BaseUtil.copyProperties(userVO, User.class)));
-        return BaseUtil.copyProperties(userRepository.findById(userVO.getId()),UserVO.class);
+        System.out.println(userVO.getId());
+        return BaseUtil.copyProperties(userRepository.findUserById(userVO.getId()),UserVO.class);
     }
 }
