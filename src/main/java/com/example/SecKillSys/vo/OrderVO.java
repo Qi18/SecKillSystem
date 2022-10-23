@@ -19,11 +19,11 @@ public class OrderVO {
 
     private Integer id;
 
-    private Integer gid;
-
     private Integer bid;
 
     private Integer status;
 
     private Integer rid;
+
+    private GroupVO groupVO;
 }

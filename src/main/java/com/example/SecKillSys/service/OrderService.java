@@ -6,6 +6,7 @@ import com.example.SecKillSys.po.Order;
 import com.example.SecKillSys.po.User;
 import com.example.SecKillSys.vo.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 /**
@@ -15,24 +16,6 @@ import java.util.List;
  */
 public interface OrderService {
 
-    /*
-     * @param userVOS: 用户列表，必须保证是学生
-     * @return: java.lang.Boolean
-     * @author: rich
-     * @date: 2022/10/21 19:53
-     * @description: 添加group表，groupStu表
-     */
-    GroupVO createGroup(List<GroupStuVO> groupStuVOs) throws Exception;
-
-    /*
-     * @param group:
-     * @param building:
-     * @return: com.example.SecKillSys.po.Order
-     * @author: rich
-     * @date: 2022/10/21 20:02
-     * @description: 创建订单
-     */
-    OrderVO createOrder(GroupVO group, BuildingVO building);
 
     /*
      * @param orderVO:
@@ -41,6 +24,6 @@ public interface OrderService {
      * @date: 2022/10/21 20:03
      * @description: 提交订单，返回订单（状态），成功后应该修改bed，room
      */
-    OrderVO upOrder(OrderVO orderVO);
+    OrderVO upOrder(Integer GroupId, Integer BuildId) throws Exception;
 
 }

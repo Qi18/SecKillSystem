@@ -1,6 +1,7 @@
 package com.example.SecKillSys.po;
 
 
+import com.example.SecKillSys.enums.Gender;
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,6 +32,9 @@ public class Room {
 
     @Column(name = "building_id")
     private Integer bid;
+
+    @Column(name = "gender")
+    private Gender gender;
 
 //    @Transient
 //    private List<Bed> beds;

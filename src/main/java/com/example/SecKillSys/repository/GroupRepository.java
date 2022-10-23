@@ -17,13 +17,5 @@ import javax.transaction.Transactional;
  */
 public interface GroupRepository extends JpaRepository<Group, Integer> {
 
-//    @Modifying
-//    @Transactional
-//    @Query(value = "insert into Group (gender, name) values (:#{#group.gender},:#{#group.name})",nativeQuery = true)
-//    void insertByGroup(Group group);
-
-//    @Modifying
-//    @Transactional
-//    @Query(value = "INSERT into Groups (gender, name) values (?1, ?2)",nativeQuery = true)
-//    void insertByGenderAndName(Gender gender, String name);
+    Group findGroupById(Integer id);
 }

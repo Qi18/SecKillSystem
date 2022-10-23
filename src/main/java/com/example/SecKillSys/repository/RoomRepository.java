@@ -14,4 +14,7 @@ import java.util.List;
 public interface RoomRepository extends JpaRepository<Room, Integer> {
 
     List<Room> findAllByBid(Integer build_id);
+
+    Room findRoomById(Integer room_id);
+
 }

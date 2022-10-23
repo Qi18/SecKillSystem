@@ -4,6 +4,7 @@ package com.example.SecKillSys.po;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 
 @Data
 @NoArgsConstructor
@@ -26,6 +27,9 @@ public class Bed {
 
     @Column(name = "stu_number")
     private String sNum;
+
+    @Column(name = "status")
+    private Integer status;
 
 }
 

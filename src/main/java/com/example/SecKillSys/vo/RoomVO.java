@@ -1,5 +1,6 @@
 package com.example.SecKillSys.vo;
 
+import com.example.SecKillSys.enums.Gender;
 import com.example.SecKillSys.po.Bed;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,4 +30,6 @@ public class RoomVO {
     private Integer remainNums;
 
     private List<BedVO> beds;
+
+    private Gender gender;
 }
