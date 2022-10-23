@@ -17,4 +17,14 @@ public interface RoomService {
     void updateBed(Bed bed) throws Exception;
 
     void updateRoom(Room room) throws Exception;
+
+    /*
+     * @return: java.lang.Boolean
+     * @author: rich
+     * @date: 2022/10/23 15:33
+     * @description: 验证房间和床位的有效性,修改房间床位数量信息
+     */
+    void check(Integer roomId);
+
+    void checkAll();
 }

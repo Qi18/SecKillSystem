@@ -46,6 +46,8 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderVO upOrder(Integer GroupId, Integer BuildingId) throws Exception {
         GroupVO groupVO = groupService.findGroupById(GroupId);
+        roomService.checkAll();
+        System.out.println("检查完成");
         BuildingVO buildingVO = buildingService.retrieveBuildingDetails(BuildingId);
         //创建订单
         Order order = new Order(null, GroupId, BuildingId, 0, null);
@@ -69,6 +71,7 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.save(order);
         //保存房间，床和用户信息
         List<Bed> beds = roomService.findAllEmptyBeds(selectVO.getId());
+        System.out.println(beds);
         for (UserVO u : groupVO.getUserVOS()) {
             for (Bed b : beds) {
                 if (b.getStatus() == 0) {
@@ -80,7 +83,10 @@ public class OrderServiceImpl implements OrderService {
             }
         }
         selectVO.setRemainNums(selectVO.getRemainNums() - num);
-        roomService.updateRoom(BaseUtil.copyProperties(selectVO, Room.class));
+        Room room = BaseUtil.copyProperties(selectVO, Room.class);
+        room.setBid(BuildingId);
+        roomService.updateRoom(room);
+        roomService.check(selectVO.getId());
         //生成返回订单
         OrderVO orderVO = BaseUtil.copyProperties(order, OrderVO.class);
         orderVO.setGroupVO(groupVO);

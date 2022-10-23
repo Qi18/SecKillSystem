@@ -185,12 +185,30 @@ COMMIT;
 
 BEGIN;
 /*!40000 ALTER TABLE `Rooms` DISABLE KEYS */;
-INSERT INTO `Rooms` VALUES (1, '511', 4, 3, 1, 1);
-INSERT INTO `Rooms` VALUES (2, '512', 4, 2, 1, 1);
-INSERT INTO `Rooms` VALUES (3, '521', 4, 1, 1, 1);
-INSERT INTO `Rooms` VALUES (4, '522', 4, 2, 1, 1);
+INSERT INTO `Rooms` VALUES (1, '511', 4, 3, 1, 0);
+INSERT INTO `Rooms` VALUES (2, '512', 4, 2, 1, 0);
+INSERT INTO `Rooms` VALUES (3, '521', 4, 3, 1, 1);
+INSERT INTO `Rooms` VALUES (4, '522', 4, 2, 1, 0);
 INSERT INTO `Rooms` VALUES (5, '1311', 4, 3, 2, 0);
 INSERT INTO `Rooms` VALUES (6, '1312', 4, 1, 2, 0);
 INSERT INTO `Rooms` VALUES (7, '1321', 4, 0, 2, 0);
+/*!40000 ALTER TABLE `Rooms` ENABLE KEYS */;
+COMMIT;
+
+
+BEGIN;
+/*!40000 ALTER TABLE `Beds` DISABLE KEYS */;
+INSERT INTO `Beds` VALUES (1, 1, '511-1', null, 0);
+INSERT INTO `Beds` VALUES (2, 1, '511-2', null, 0);
+INSERT INTO `Beds` VALUES (3, 1, '511-3', null, 0);
+INSERT INTO `Beds` VALUES (4, 1, '511-4', null, 0);
+INSERT INTO `Beds` VALUES (5, 2, '512-1', null, 0);
+INSERT INTO `Beds` VALUES (6, 2, '512-2', null, 0);
+INSERT INTO `Beds` VALUES (7, 2, '512-3', null, 0);
+INSERT INTO `Beds` VALUES (8, 2, '512-4', null, 0);
+INSERT INTO `Beds` VALUES (9, 3, '521-1', null, 0);
+INSERT INTO `Beds` VALUES (10, 3, '521-2', null, 0);
+INSERT INTO `Beds` VALUES (11, 3, '521-3', null, 0);
+INSERT INTO `Beds` VALUES (12, 3, '521-4', null, 0);
 /*!40000 ALTER TABLE `Rooms` ENABLE KEYS */;
 COMMIT;
