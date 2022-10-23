@@ -1,5 +1,6 @@
 package com.example.SecKillSys.service.lmpl;
 
+import com.example.SecKillSys.enums.Gender;
 import com.example.SecKillSys.po.Group;
 import com.example.SecKillSys.po.GroupStu;
 import com.example.SecKillSys.po.Order;
@@ -13,6 +14,7 @@ import com.example.SecKillSys.util.BaseUtil;
 import com.example.SecKillSys.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,24 +42,19 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
+    @Transactional
     public GroupVO createGroup(List<GroupStuVO> groupStuVOs) throws Exception {
         if (groupStuVOs == null || groupStuVOs.size() == 0) throw new Exception("未传入有效信息");
-        List<User> users = groupStuVOs.stream().map(r -> {
-            User user = userRepository.findUserBySnum(r.getSnum());
-            if (!user.getName().equals(r.getName())) try {
-                throw new Exception("输入队友信息不正确");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return user;
-        }).collect(Collectors.toList());
-        Group group = new Group(null, users.get(0).getGender(), "1");
-        System.out.println(group);
-        for (User i : users) {
-            if (i.getGender() != group.getGender()) throw new Exception("所选同伴的性别不合适");
+        List<User> users = new ArrayList<>();
+        Gender standard = userRepository.findUserBySnum(groupStuVOs.get(0).getSnum()).getGender();
+        for (GroupStuVO i : groupStuVOs) {
+            User user = userRepository.findUserBySnum(i.getSnum());
+            if (!user.getName().equals(i.getName())) throw new Exception("输入队友信息不正确");
+            if (!user.getGender().equals(standard)) throw new Exception("所选同伴的性别不合适");
+            users.add(user);
         }
-        group = groupRepository.save(group);
-        System.out.println(group);
+        Group group = new Group(null, standard, "第一组");
+        groupRepository.save(group);
         for (User i : users) {
             groupStuRepository.save(new GroupStu(null, group.getId(), i.getSnum()));
         }

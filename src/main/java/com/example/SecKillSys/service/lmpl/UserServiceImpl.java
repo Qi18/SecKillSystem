@@ -55,7 +55,6 @@ public class UserServiceImpl implements UserService {
             BaseUtil.copyProperties(userVO, user);
             userRepository.save(user);
         }
-        System.out.println(userVO.getId());
         return BaseUtil.copyProperties(userRepository.findUserById(userVO.getId()),UserVO.class);
     }
 

@@ -18,7 +18,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "Groups")
+@Table(name = "Teams")
 public class Group {
 
     @Id

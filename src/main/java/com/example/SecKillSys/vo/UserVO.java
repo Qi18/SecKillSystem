@@ -24,11 +24,11 @@ public class UserVO {
 
     private Gender gender;
 
-    private String iNum;
+    private String inum;
 
     private String phone;
 
-    private String sNum;
+    private String snum;
 
     private UserType userType;
 
