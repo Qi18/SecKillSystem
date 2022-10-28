@@ -161,43 +161,41 @@ BEGIN;
 INSERT INTO `Users` VALUES (1, 'test', 111111, 0, 1, 510125200105036317, 13348805522, 2201210308, 'a1', 0);
 INSERT INTO `Users` VALUES (2, 'test2', 111111, 0, 1, 510125200105036318, 13348805522, 2201210309, 'a2', 0);
 INSERT INTO `Users` VALUES (3, 'test3', 111111, 0, 1, 510125200105036319, 13348805522, 2201210310, 'a3', 0);
+INSERT INTO `Users` VALUES (4, 'test4', 111111, 0, 0, 510125200105036320, 13348805522, 2201210311, 'a4', 0);
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 COMMIT;
 
 BEGIN;
 /*!40000 ALTER TABLE `Buildings` DISABLE KEYS */;
 INSERT INTO `Buildings` VALUES (1, '五号楼');
-INSERT INTO `Buildings` VALUES (2, '13号楼');
+INSERT INTO `Buildings` VALUES (2, '13号楼E1');
+INSERT INTO `Buildings` VALUES (3, '13号楼E2');
+INSERT INTO `Buildings` VALUES (4, '13号楼E3');
+INSERT INTO `Buildings` VALUES (5, '14号楼E1');
+INSERT INTO `Buildings` VALUES (6, '14号楼E2');
+INSERT INTO `Buildings` VALUES (7, '14号楼E3');
+INSERT INTO `Buildings` VALUES (8, '9号楼');
 /*!40000 ALTER TABLE `Buildings` ENABLE KEYS */;
 COMMIT;
 
 
-BEGIN;
-/*!40000 ALTER TABLE `Rooms` DISABLE KEYS */;
-INSERT INTO `Rooms` VALUES (1, '511', 4, 3, 1, 0);
-INSERT INTO `Rooms` VALUES (2, '512', 4, 2, 1, 0);
-INSERT INTO `Rooms` VALUES (3, '521', 4, 3, 1, 1);
-INSERT INTO `Rooms` VALUES (4, '522', 4, 2, 1, 0);
-INSERT INTO `Rooms` VALUES (5, '1311', 4, 3, 2, 0);
-INSERT INTO `Rooms` VALUES (6, '1312', 4, 1, 2, 0);
-INSERT INTO `Rooms` VALUES (7, '1321', 4, 0, 2, 0);
-/*!40000 ALTER TABLE `Rooms` ENABLE KEYS */;
-COMMIT;
+# BEGIN;
+# /*!40000 ALTER TABLE `Rooms` DISABLE KEYS */;
+# INSERT INTO `Rooms` VALUES
+# (1, '510', 4, 4, 1, 0),(2, '511', 4, 4, 1, 0),(3, '512', 4, 4, 1, 0),(4, '513', 4, 4, 1, 0),
+# (5, '514', 4, 4, 1, 0),(6, '515', 4, 4, 1, 0),(7, '516', 4, 4, 1, 0),(8, '517', 4, 4, 1, 0),
+# (9, '518', 4, 4, 1, 0),(10, '519', 4, 4, 1, 0),(11, '520', 4, 4, 1, 1),(12, '521', 4, 4, 1, 1),
+# (13, '522', 4, 4, 1, 1),(14, '523', 4, 4, 1, 1),(15, '524', 4, 4, 1, 1),(16, '525', 4, 4, 1, 1),
+# (17, '526', 4, 4, 1, 1),(18, '527', 4, 4, 1, 1),(19, '528', 4, 4, 1, 1),(20, '529', 4, 4, 1, 1);
+# /*!40000 ALTER TABLE `Rooms` ENABLE KEYS */;
+# COMMIT;
 
 
 BEGIN;
 /*!40000 ALTER TABLE `Beds` DISABLE KEYS */;
-INSERT INTO `Beds` VALUES (1, 1, '511-1', null, 0);
-INSERT INTO `Beds` VALUES (2, 1, '511-2', null, 0);
-INSERT INTO `Beds` VALUES (3, 1, '511-3', null, 0);
-INSERT INTO `Beds` VALUES (4, 1, '511-4', null, 0);
-INSERT INTO `Beds` VALUES (5, 2, '512-1', null, 0);
-INSERT INTO `Beds` VALUES (6, 2, '512-2', null, 0);
-INSERT INTO `Beds` VALUES (7, 2, '512-3', null, 0);
-INSERT INTO `Beds` VALUES (8, 2, '512-4', null, 0);
-INSERT INTO `Beds` VALUES (9, 3, '521-1', null, 0);
-INSERT INTO `Beds` VALUES (10, 3, '521-2', null, 0);
-INSERT INTO `Beds` VALUES (11, 3, '521-3', null, 0);
-INSERT INTO `Beds` VALUES (12, 3, '521-4', null, 0);
+INSERT INTO `Beds` VALUES
+(1, 1, '511-1', null, 0),(2, 1, '511-2', null, 0),(3, 1, '511-3', null, 0),(4, 1, '511-4', null, 0),
+(5, 2, '512-1', null, 0),(6, 2, '512-2', null, 0),(7, 2, '512-3', null, 0),(8, 2, '512-4', null, 0),
+(9, 3, '513-1', null, 0),(10, 3, '513-2', null, 0),(11, 3, '513-3', null, 0),(12, 3, '513-4', null, 0);
 /*!40000 ALTER TABLE `Rooms` ENABLE KEYS */;
 COMMIT;

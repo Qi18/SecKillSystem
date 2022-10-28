@@ -36,8 +36,6 @@ public class Room {
     @Column(name = "gender")
     private Gender gender;
 
-//    @Transient
-//    private List<Bed> beds;
 
 }
 

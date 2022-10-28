@@ -45,11 +45,14 @@ public class GroupServiceImpl implements GroupService {
         Gender standard = userRepository.findUserBySnum(groupStuVOs.get(0).getSnum()).getGender();
         for (GroupStuVO i : groupStuVOs) {
             User user = userRepository.findUserBySnum(i.getSnum());
+            if (user == null) throw new Exception("此学号不存在");
             if (!user.getName().equals(i.getName())) throw new Exception("输入队友信息不正确");
             if (!user.getGender().equals(standard)) throw new Exception("所选同伴的性别不合适");
             users.add(user);
         }
-        Group group = new Group(null, standard, "第一组");
+        Group group = new Group(null, standard, null);
+        groupRepository.save(group);
+        group.setName("第" + group.getId() +"组");
         groupRepository.save(group);
         for (User i : users) {
             groupStuRepository.save(new GroupStu(null, group.getId(), i.getSnum()));
@@ -68,6 +71,7 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    @Transactional
     public GroupVO findGroupById(Integer id) throws Exception {
         if (id == null) throw new Exception("组号不存在");
         GroupVO groupVO = BaseUtil.copyProperties(groupRepository.findGroupById(id),GroupVO.class);

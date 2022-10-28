@@ -1,5 +1,6 @@
 package com.example.SecKillSys.service.lmpl;
 
+import com.example.SecKillSys.enums.Gender;
 import com.example.SecKillSys.enums.ReturnCode;
 import com.example.SecKillSys.exception.BusinessException;
 import com.example.SecKillSys.po.User;
@@ -62,6 +63,7 @@ public class UserServiceImpl implements UserService {
     public void addUser(UserVO userVO) throws Exception {
         User user = BaseUtil.copyProperties(userVO, User.class);
         user.setId(null);
+        if (userVO.getGender() == null) user.setGender(Gender.男生);
         userRepository.save(user);
     }
 

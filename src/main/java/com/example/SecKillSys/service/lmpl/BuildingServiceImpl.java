@@ -61,6 +61,7 @@ public class BuildingServiceImpl implements BuildingService {
     @Override
     public BuildingVO retrieveBuildingDetails(Integer building_id) throws Exception {
         Building building = buildingRepository.findBuildingById(building_id);
+        if (building == null) throw new Exception("不存在此楼栋");
         BuildingVO buildingVO = BaseUtil.copyProperties(building, BuildingVO.class);
         List<Room> rooms = roomRepository.findAllByBid(building_id);
         List<RoomVO> roomVOS = new ArrayList<>();

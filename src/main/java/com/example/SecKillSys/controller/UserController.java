@@ -5,6 +5,11 @@ import com.example.SecKillSys.service.AuthenticationService;
 import com.example.SecKillSys.vo.AuthenticationRequest;
 import com.example.SecKillSys.vo.UserVO;
 import com.example.SecKillSys.service.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,25 +26,6 @@ public class UserController {
 
     @Autowired
     AuthenticationService authenticationService;
-
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public String login(AuthenticationRequest authenticationRequest, HttpServletRequest httpServletRequest) throws Exception {
-        UserVO userVO = authenticationService.authentication(authenticationRequest);
-        //获取session对象
-        HttpSession session = httpServletRequest.getSession();
-        //将用户的信息放入到session中
-        session.setAttribute(UserVO.USER_SESSION_KEY, userVO);
-        //设置session失效时间，单位为秒
-        session.setMaxInactiveInterval(60);
-        return "登录成功";
-    }
-
-    @RequestMapping(value = "logout", method = RequestMethod.POST)
-    public String logout(HttpServletRequest httpServletRequest){
-        HttpSession session = httpServletRequest.getSession();
-        session.removeAttribute(UserVO.USER_SESSION_KEY);
-        return "登出成功";
-    }
 
 
     @RequestMapping(value = "/update",method = RequestMethod.POST)
