@@ -1,6 +1,8 @@
 package com.example.SecKillSys.controller;
 
 
+import com.example.SecKillSys.po.User;
+import com.example.SecKillSys.response.AjaxResult;
 import com.example.SecKillSys.service.AuthenticationService;
 import com.example.SecKillSys.vo.AuthenticationRequest;
 import com.example.SecKillSys.vo.UserVO;
@@ -29,25 +31,29 @@ public class UserController {
 
 
     @RequestMapping(value = "/update",method = RequestMethod.POST)
-    public UserVO update(@RequestBody UserVO userVO) throws Exception {
-        return userService.updateUser(userVO);
+    public AjaxResult update(@RequestBody UserVO userVO) throws Exception {
+        AjaxResult ajax = AjaxResult.success();
+        ajax.put(AjaxResult.DATA_TAG, userService.updateUser(userVO));
+        return ajax;
     }
 
     @RequestMapping(value = "findAll",method = RequestMethod.GET)
-    public List<UserVO> findAll() throws Exception {
-        return userService.retrieveAllUsers();
+    public AjaxResult findAll() throws Exception {
+        AjaxResult ajax = AjaxResult.success();
+        ajax.put(AjaxResult.DATA_TAG, userService.retrieveAllUsers());
+        return ajax;
     }
 
     @RequestMapping(value = "delete",method = RequestMethod.DELETE)
-    public String delete(@RequestParam Integer id) throws Exception {
+    public AjaxResult delete(@RequestParam Integer id) throws Exception {
         userService.deleteUserById(id);
-        return "删除成功";
+        return AjaxResult.success("删除成功");
     }
 
     @RequestMapping(value = "add",method = RequestMethod.PUT)
-    public String add(@RequestBody UserVO userVO) throws Exception {
+    public AjaxResult add(@RequestBody UserVO userVO) throws Exception {
         userService.addUser(userVO);
-        return "添加成功";
+        return AjaxResult.success("添加成功");
     }
 
 

@@ -1,5 +1,6 @@
 package com.example.SecKillSys.controller;
 
+import com.example.SecKillSys.response.AjaxResult;
 import com.example.SecKillSys.service.GroupService;
 import com.example.SecKillSys.service.OrderService;
 import com.example.SecKillSys.vo.GroupStuVO;
@@ -27,12 +28,16 @@ public class OrderController {
     OrderService orderService;
 
     @RequestMapping(value = "createGroup", method = RequestMethod.POST)
-    public GroupVO createGroup(@RequestBody List<GroupStuVO> groupStuVOs) throws Exception {
-        return groupService.createGroup(groupStuVOs);
+    public AjaxResult createGroup(@RequestBody List<GroupStuVO> groupStuVOs) throws Exception {
+        AjaxResult ajax = AjaxResult.success();
+        ajax.put(AjaxResult.DATA_TAG, groupService.createGroup(groupStuVOs));
+        return ajax;
     }
 
     @RequestMapping(value = "preOrder", method = RequestMethod.POST)
-    public OrderVO preOrder(@RequestParam("groupId")Integer groupId, @RequestParam("buildId")Integer buildId) throws Exception {
-        return orderService.upOrder(groupId, buildId);
+    public AjaxResult preOrder(@RequestParam("groupId")Integer groupId, @RequestParam("buildId")Integer buildId) throws Exception {
+        AjaxResult ajax = AjaxResult.success();
+        ajax.put(AjaxResult.DATA_TAG, orderService.upOrder(groupId, buildId));
+        return ajax;
     }
 }

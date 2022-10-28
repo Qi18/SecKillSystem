@@ -50,7 +50,7 @@ public class GroupServiceImpl implements GroupService {
             if (!user.getGender().equals(standard)) throw new Exception("所选同伴的性别不合适");
             users.add(user);
         }
-        Group group = new Group(null, standard, null);
+        Group group = new Group(null, standard, "");
         groupRepository.save(group);
         group.setName("第" + group.getId() +"组");
         groupRepository.save(group);

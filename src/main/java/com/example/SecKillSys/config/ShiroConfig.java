@@ -74,6 +74,7 @@ public class ShiroConfig {
         //认证
         map.put("/user/*","authc");
         map.put("/building/*","authc");
+        map.put("/order/*","authc");
         map.put("/login","anon");
         map.put("/register","anon");
         subject.setFilterChainDefinitionMap(map);

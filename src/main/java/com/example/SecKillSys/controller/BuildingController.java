@@ -1,5 +1,6 @@
 package com.example.SecKillSys.controller;
 
+import com.example.SecKillSys.response.AjaxResult;
 import com.example.SecKillSys.service.BuildingService;
 import com.example.SecKillSys.vo.BuildingVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,18 @@ public class BuildingController {
     BuildingService buildingService;
 
     @RequestMapping(value = "/findAll",method = RequestMethod.GET)
-    public List<BuildingVO> findAll() throws Exception {
-        return buildingService.retrieveAllBuildings();
+    public AjaxResult findAll() throws Exception {
+        AjaxResult ajax = AjaxResult.success();
+        List<BuildingVO> buildingList = buildingService.retrieveAllBuildings();
+        ajax.put(AjaxResult.DATA_TAG, buildingList);
+        return ajax;
     }
 
     @RequestMapping(value = "{buildingId}/detail", method = RequestMethod.GET)
-    public BuildingVO retrieveBuildingDetail(@PathVariable Integer buildingId) throws Exception {
-        return buildingService.retrieveBuildingDetails(buildingId);
+    public AjaxResult retrieveBuildingDetail(@PathVariable Integer buildingId) throws Exception {
+        AjaxResult ajax = AjaxResult.success();
+        BuildingVO buildingVO = buildingService.retrieveBuildingDetails(buildingId);
+        ajax.put(AjaxResult.DATA_TAG, buildingVO);
+        return ajax;
     }
 }
