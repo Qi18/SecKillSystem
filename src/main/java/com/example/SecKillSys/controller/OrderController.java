@@ -48,9 +48,9 @@ public class OrderController {
     @RequestMapping(value = "preOrder", method = RequestMethod.POST)
     public AjaxResult preOrder(@RequestParam("groupId")Integer groupId, @RequestParam("buildId")Integer buildId) throws Exception {
         AjaxResult ajax = AjaxResult.success();
-        ajax.put(AjaxResult.DATA_TAG, orderService.process(groupId, buildId));
-//        Message message = new Message(groupId, buildId);
-//        mqSender.sendMessage(JSON.toJSONString(message));
+//        ajax.put(AjaxResult.DATA_TAG, orderService.process(groupId, buildId));
+        Message message = new Message(groupId, buildId);
+        mqSender.sendMessage(message);
         return ajax;
     }
 }

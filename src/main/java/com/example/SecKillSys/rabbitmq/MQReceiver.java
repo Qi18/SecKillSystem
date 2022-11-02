@@ -23,11 +23,11 @@ public class MQReceiver {
     OrderService orderService;
 
     @RabbitListener(queues = "Queue")
-    public void receive(String message) throws Exception {
+    public void receive(Message message) throws Exception {
         log.info("接收的消息" + message);
-        Message secKillMessage = JSON.parseObject(message, Message.class);
-        Integer buildId = secKillMessage.getBuildID();
-        Integer groupId = secKillMessage.getGroupID();
-//        orderService.upOrder(groupId, buildId);
+//        Message secKillMessage = JSON.parseObject(message, Message.class);
+        Integer buildId = message.getBuildID();
+        Integer groupId = message.getGroupID();
+        orderService.process(groupId, buildId);
     }
 }
