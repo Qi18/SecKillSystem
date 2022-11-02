@@ -12,6 +12,8 @@ import java.util.List;
  */
 public interface RoomService {
 
+    Room findRoomByID(Integer roomId);
+
     List<Bed> findAllEmptyBeds(Integer roomId);
 
     void updateBed(Bed bed) throws Exception;

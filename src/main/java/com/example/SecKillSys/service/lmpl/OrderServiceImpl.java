@@ -2,10 +2,7 @@ package com.example.SecKillSys.service.lmpl;
 
 import com.example.SecKillSys.enums.Gender;
 import com.example.SecKillSys.po.*;
-import com.example.SecKillSys.repository.GroupRepository;
-import com.example.SecKillSys.repository.GroupStuRepository;
 import com.example.SecKillSys.repository.OrderRepository;
-import com.example.SecKillSys.repository.UserRepository;
 import com.example.SecKillSys.service.BuildingService;
 import com.example.SecKillSys.service.GroupService;
 import com.example.SecKillSys.service.OrderService;
@@ -15,12 +12,8 @@ import com.example.SecKillSys.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author: rich
@@ -42,18 +35,20 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     RoomService roomService;
 
-
-    @Transactional(rollbackFor = Exception.class)
     @Override
-    public OrderVO upOrder(Integer GroupId, Integer BuildingId) throws Exception {
+    public OrderVO process(Integer GroupId, Integer BuildingId) throws Exception {
         GroupVO groupVO = groupService.findGroupById(GroupId);
 //        if (groupVO.getStatus()) throw new Exception("该组已经成功完成订单");
-        roomService.checkAll();
-        System.out.println("检查完成");
-        BuildingVO buildingVO = buildingService.retrieveBuildingDetails(BuildingId);
         //创建订单
         Order order = new Order(null, GroupId, BuildingId, 0, null);
         orderRepository.save(order);
+        return upOrder(groupVO, BuildingId, order);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public OrderVO upOrder(GroupVO groupVO, Integer BuildingId, Order order) throws Exception {
+//        roomService.checkAll();
+        BuildingVO buildingVO = buildingService.retrieveBuildingDetails(BuildingId);
         //开始选择房间
         int num = groupVO.getUserVOS().size();
         Gender gender = groupVO.getGender();
@@ -84,11 +79,13 @@ public class OrderServiceImpl implements OrderService {
                 }
             }
         }
-        selectVO.setRemainNums(selectVO.getRemainNums() - num);
-        Room room = BaseUtil.copyProperties(selectVO, Room.class);
-        room.setBid(BuildingId);
+//        selectVO.setRemainNums(selectVO.getRemainNums() - num);
+//        Room room = BaseUtil.copyProperties(selectVO, Room.class);
+//        room.setBid(BuildingId);
+        Room room = roomService.findRoomByID(selectVO.getId());
+        room.setRemainNums(room.getRemainNums() - num);
         roomService.updateRoom(room);
-        roomService.check(selectVO.getId());
+//        roomService.check(selectVO.getId());
         //生成返回订单
         OrderVO orderVO = BaseUtil.copyProperties(order, OrderVO.class);
         orderVO.setGroupVO(groupVO);

@@ -26,6 +26,11 @@ public class RoomServiceImpl implements RoomService {
     BedRepository bedRepository;
 
     @Override
+    public Room findRoomByID(Integer roomId) {
+        return roomRepository.findRoomById(roomId);
+    }
+
+    @Override
     public List<Bed> findAllEmptyBeds(Integer roomId) {
         return bedRepository.findAllEmptyByRid(roomId);
     }

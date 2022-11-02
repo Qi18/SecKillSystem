@@ -37,3 +37,29 @@ spring:
         password:
     thymeleaf:
         enabled: false
+    #RabbitMQ
+    rabbitmq:
+        host: 127.0.0.1
+        username: guest
+        password: guest
+        virtual-host: /
+        port: 5672
+        listener:
+            simple:
+                # 消费者最小数量
+                concurrency: 10
+                # 消费者最大数量
+                max-concurrency: 10
+                # 限制消费者每次只处理一条消息
+                prefetch: 1
+                # 默认启动容器
+                auto-startup: true
+                # 拒绝时
+                default-requeue-rejected: true
+                retry:
+                    #时间间隔5秒
+                    initial-interval: 5000ms
+                    enabled: true
+                    #最大重试次数
+                    max-attempts: 0
+

@@ -17,13 +17,8 @@ import java.util.List;
 public interface OrderService {
 
 
-    /*
-     * @param orderVO:
-     * @return: com.example.SecKillSys.po.Order
-     * @author: rich
-     * @date: 2022/10/21 20:03
-     * @description: 提交订单，返回订单（状态），成功后应该修改bed，room
-     */
-    OrderVO upOrder(Integer GroupId, Integer BuildId) throws Exception;
+    OrderVO process(Integer GroupId, Integer BuildingId) throws Exception;
+
+
 
 }
