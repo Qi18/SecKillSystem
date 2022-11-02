@@ -3,6 +3,7 @@ package com.example.SecKillSys.controller;
 import com.example.SecKillSys.response.AjaxResult;
 import com.example.SecKillSys.service.UserService;
 import com.example.SecKillSys.vo.UserVO;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -23,6 +24,7 @@ import javax.servlet.http.HttpSession;
  */
 
 @RestController
+@Slf4j
 public class LoginController {
 
     @Autowired

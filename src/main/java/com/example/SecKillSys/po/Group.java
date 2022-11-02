@@ -32,4 +32,7 @@ public class Group {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "status")
+    private Boolean status;
+
 }

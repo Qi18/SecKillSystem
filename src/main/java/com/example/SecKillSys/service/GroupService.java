@@ -15,4 +15,6 @@ public interface GroupService {
     GroupVO createGroup(List<GroupStuVO> groupStuVOs) throws Exception;
 
     GroupVO findGroupById(Integer id) throws Exception;
+
+    void updateGroupStatus(Integer group_id) throws Exception;
 }

@@ -15,6 +15,7 @@ import com.example.SecKillSys.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
@@ -42,10 +43,11 @@ public class OrderServiceImpl implements OrderService {
     RoomService roomService;
 
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public OrderVO upOrder(Integer GroupId, Integer BuildingId) throws Exception {
         GroupVO groupVO = groupService.findGroupById(GroupId);
+//        if (groupVO.getStatus()) throw new Exception("该组已经成功完成订单");
         roomService.checkAll();
         System.out.println("检查完成");
         BuildingVO buildingVO = buildingService.retrieveBuildingDetails(BuildingId);
@@ -69,9 +71,9 @@ public class OrderServiceImpl implements OrderService {
         order.setStatus(1);
         order.setRid(selectVO.getId());
         orderRepository.save(order);
+        groupService.updateGroupStatus(groupVO.getId());
         //保存房间，床和用户信息
         List<Bed> beds = roomService.findAllEmptyBeds(selectVO.getId());
-        System.out.println(beds);
         for (UserVO u : groupVO.getUserVOS()) {
             for (Bed b : beds) {
                 if (b.getStatus() == 0) {

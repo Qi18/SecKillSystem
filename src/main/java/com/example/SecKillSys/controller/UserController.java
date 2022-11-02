@@ -37,20 +37,27 @@ public class UserController {
         return ajax;
     }
 
-    @RequestMapping(value = "findAll",method = RequestMethod.GET)
+    @RequestMapping(value = "/findAll",method = RequestMethod.GET)
     public AjaxResult findAll() throws Exception {
         AjaxResult ajax = AjaxResult.success();
         ajax.put(AjaxResult.DATA_TAG, userService.retrieveAllUsers());
         return ajax;
     }
 
-    @RequestMapping(value = "delete",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/find",method = RequestMethod.GET)
+    public AjaxResult find(@RequestParam("user_id") Integer user_id) throws Exception {
+        AjaxResult ajax = AjaxResult.success();
+        ajax.put(AjaxResult.DATA_TAG, userService.retrieveUserDetails(user_id));
+        return ajax;
+    }
+
+    @RequestMapping(value = "/delete",method = RequestMethod.DELETE)
     public AjaxResult delete(@RequestParam Integer id) throws Exception {
         userService.deleteUserById(id);
         return AjaxResult.success("删除成功");
     }
 
-    @RequestMapping(value = "add",method = RequestMethod.PUT)
+    @RequestMapping(value = "/add",method = RequestMethod.PUT)
     public AjaxResult add(@RequestBody UserVO userVO) throws Exception {
         userService.addUser(userVO);
         return AjaxResult.success("添加成功");

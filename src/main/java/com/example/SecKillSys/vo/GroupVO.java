@@ -26,5 +26,7 @@ public class GroupVO {
 
     private String name;
 
+    private Boolean status;
+
     private List<UserVO> userVOS;
 }
